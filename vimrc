@@ -16,7 +16,7 @@ runtime! debian.vim
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
+set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -408,4 +408,5 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
 " colorscheme
 " colorscheme industry
 " colorscheme molokai
+colorscheme heroku-terminal
 " let g:molokai_original = 1

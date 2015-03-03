@@ -366,7 +366,8 @@ nnoremap <F5> :GundoToggle<CR>
 " NERDTree settings {{{
 nnoremap <leader>n :NERDTree<CR>
 nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
-nnoremap <leader>N :NERDTreeClose<CR>
+"conflicts with toggle line numbers
+"nnoremap <leader>N :NERDTreeClose<CR>
 
 " Store the bookmarks file
 "let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")

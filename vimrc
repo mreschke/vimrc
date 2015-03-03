@@ -142,7 +142,7 @@ set encoding=utf-8
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
-set cmdheight=2                 " use a status bar that is 2 rows high
+"set cmdheight=2                 " use a status bar that is 2 rows high
 " }}}
 
 " Vim behaviour {{{
@@ -178,7 +178,7 @@ set showcmd                     " show (partial) command in the last line of the
                                 "    this also shows visual selection info
 set nomodeline                  " disable mode lines (security measure)
 "set ttyfast                     " always use a fast terminal
-set cursorline                  " underline the current line, for quick orientation
+"set cursorline                  " underline the current line, for quick orientation
 " }}}
 
  
@@ -257,10 +257,10 @@ nnoremap ' `
 nnoremap ` '
 
 " Use the damn hjkl keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
+"noremap <up> <nop>
+"noremap <down> <nop>
+"noremap <left> <nop>
+"noremap <right> <nop>
 
 " Remap j and k to act as expected when used on long, wrapped, lines
 nnoremap j gj
@@ -405,6 +405,7 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
 
 
 
-
-
-let g:molokai_original = 1
+" colorscheme
+" colorscheme industry
+" colorscheme molokai
+" let g:molokai_original = 1

@@ -14,10 +14,6 @@ runtime! debian.vim
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
 
-" If using a dark background within the editing area and syntax highlighting
-" turn on this option as well
-set background=dark
-
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 "if has("autocmd")
@@ -400,13 +396,27 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
 " }}}
  
 
+if has("gui_running")
 
+    "colorscheme molokai
+    "colorscheme mustang
+    "colorscheme badwolf
+    colorscheme jellybeans
 
+    " Remove toolbar, left scrollbar and right scrollbar
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+else
+    set background=dark
 
+    "colorscheme molokai
+    "colorscheme mustang
+    "colorscheme badwolf
+    "colorscheme jellybeans
+    "colorscheme heroku-terminal
+    colorscheme benokai
+endif
 
-
-" colorscheme
-" colorscheme industry
-" colorscheme molokai
-colorscheme heroku-terminal
-" let g:molokai_original = 1

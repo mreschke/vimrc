@@ -445,11 +445,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 " }}}
 
-" Restore cursor position upon reopening files {{{
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+" Restore or remember last cursor position upon reopening files {{{
+"autocmd BufReadPost *
+"    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"    \   exe "normal! g`\"" |
+"    \ endif
 " }}} 
 
 " Extra vi-compatibility {{{

@@ -1,3 +1,6 @@
+" mReschke Personal Debian based Vimrc
+" 2015-03-02
+
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim and sourced by
 " the call to :runtime you can find below.  If you wish to change any of those
 " settings, you should do it in this file (/etc/vim/vimrc), since debian.vim
@@ -13,12 +16,6 @@ runtime! debian.vim
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-"if has("autocmd")
-"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -41,7 +38,7 @@ let maplocalleader="\\"
 set showmode                    " always show what mode we're currently editing in
 set nowrap                      " don't wrap lines
 
-set tabstop=4                   " a tab is four spaces"set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
+set tabstop=4                   " a tab is four spaces"set softtabstop=4
 set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                   " expand tabs by default (overloadable per file type later)
 set shiftwidth=4                " number of spaces to use for autoindenting
@@ -58,7 +55,7 @@ set smartcase                   " ignore case if search pattern is all lowercase
 set smarttab                    " insert tabs on the start of a line according to
                                 "    shiftwidth, not tabstop
 set scrolloff=4                 " keep 4 lines off the edges of the screen when scrolling
-set virtualedit=all             " allow the cursor to go in to "invalid" places
+"set virtualedit=all             " allow the cursor to go in to "invalid" places
 set hlsearch                    " highlight search terms
 set incsearch                   " show search matches as you type
 set gdefault                    " search/replace "globally" (on a line) by default
@@ -82,8 +79,9 @@ set nrformats=                  " make <C-a> and <C-x> play well with
 set shortmess+=I                " hide the launch screen
 set clipboard=unnamed           " normal OS clipboard interaction
 set autoread                    " automatically reload files changed outside of Vim
+"set autowrite                  " automatically save file on buffer switch
 
- " Toggle show/hide invisible chars
+" Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
 
 " Toggle line numbers
@@ -106,6 +104,8 @@ set foldmethod=marker           " detect triple-{ style fold markers
 set foldlevelstart=99           " start out with everything unfolded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
+let php_folding=1
+
 function! MyFoldText()
     let line = getline(v:foldstart)
 
@@ -130,6 +130,8 @@ nnoremap z2 :set foldlevel=2<cr>
 nnoremap z3 :set foldlevel=3<cr>
 nnoremap z4 :set foldlevel=4<cr>
 nnoremap z5 :set foldlevel=5<cr>
+nnoremap <Space> za
+vnoremap <Space> za  
 " }}}
 
 " Editor layout {{{
@@ -269,6 +271,13 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 nnoremap <leader>w <C-w>v<C-w>l
 
+"Resize vsplit
+nmap <C-v> :vertical resize +5<cr>
+nmap 25 :vertical resize 40<cr>
+
+"Load the current buffer in Chrome
+"nmap <leader>o :!chromium<cr>
+
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
 inoremap <C-f> <C-x><C-f>
 inoremap <C-l> <C-x><C-l>
@@ -320,10 +329,6 @@ nnoremap <C-w> :redraw!<cr>
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-" Folding
-nnoremap <Space> za
-vnoremap <Space> za
-
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
@@ -364,8 +369,9 @@ nnoremap <F5> :GundoToggle<CR>
 " }}}
 
 " NERDTree settings {{{
-nnoremap <leader>n :NERDTree<CR>
-nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
+nnoremap <leader>n :NERDTreeTabsToggle<CR>
+"nnoremap <leader>n :NERDTree<CR>
+"nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
 "conflicts with toggle line numbers
 "nnoremap <leader>N :NERDTreeClose<CR>
 
@@ -395,7 +401,76 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
             \ '\.o$', '\.so$', '\.egg$', '^\.git$' ]
 
 " }}}
- 
+
+" TagList settings {{{
+nnoremap <leader>l :TlistClose<CR>:TlistToggle<CR>
+nnoremap <leader>L :TlistClose<CR>
+
+" quit Vim when the TagList window is the last open window
+let Tlist_Exit_OnlyWindow=1         " quit when TagList is the last open window
+let Tlist_GainFocus_On_ToggleOpen=1 " put focus on the TagList window when it opens
+"let Tlist_Process_File_Always=1     " process files in the background, even when the TagList window isn't open
+"let Tlist_Show_One_File=1           " only show tags from the current buffer, not all open buffers
+let Tlist_WinWidth=40               " set the width
+let Tlist_Inc_Winwidth=1            " increase window by 1 when growing
+
+" shorten the time it takes to highlight the current tag (default is 4 secs)
+" note that this setting influences Vim's behaviour when saving swap files,
+" but we have already turned off swap files (earlier)
+"set updatetime=1000
+
+" the default ctags in /usr/bin on the Mac is GNU ctags, so change it to the
+" exuberant ctags version in /usr/local/bin
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+
+" show function/method prototypes in the list
+let Tlist_Display_Prototype=1
+
+" don't show scope info
+let Tlist_Display_Tag_Scope=0
+
+" show TagList window on the right
+let Tlist_Use_Right_Window=1
+
+" }}}
+
+" vim-flake8 default configuration
+let g:flake8_show_in_gutter=1
+
+" Conflict markers {{{
+" highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" shortcut to jump to next conflict marker
+nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+" }}}
+
+" Restore cursor position upon reopening files {{{
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+" }}} 
+
+" Extra vi-compatibility {{{
+" set extra vi-compatible options
+set cpoptions+=$     " when changing a line, don't redisplay, but put a '$' at
+                     " the end during the change
+set formatoptions-=o " don't start new lines w/ comment leader on pressing 'o'
+au filetype vim set formatoptions-=o
+                     " somehow, during vim filetype detection, this gets set
+                     " for vim files, so explicitly unset it again
+" }}} 
+
+" Ignore common directories
+let g:ctrlp_custom_ignore = {
+   \ 'dir': 'node_modules\|bower_components',
+   \ } 
+
+" Invoke CtrlP, but CommandT style
+nnoremap <leader>t :CtrlP<cr>
+nnoremap <leader>b :CtrlPTag<cr>
+nnoremap <leader>. :CtrlPBuffer<cr>    
 
 if has("gui_running")
 
@@ -460,4 +535,66 @@ function! PulseCursorLine()
 endfunction
 
 " }}}
- 
+
+" Powerline configuration ------------------------------------------------- {{{
+
+" Dont have powerline, too much of a pain to install, to many dependencies
+"let g:Powerline_symbols = 'compatible'
+"let g:Powerline_symbols = 'fancy'
+
+" }}} 
+
+
+" Use shift-H and shift-L for move to beginning/end
+nnoremap H 0
+nnoremap L $ 
+
+" Split previously opened file ('#') in a split window
+nnoremap <leader>sh :execute "leftabove vsplit" bufname('#')<cr>
+nnoremap <leader>sl :execute "rightbelow vsplit" bufname('#')<cr>
+
+" Abbreviations
+" ------------------------------------------------------------------------- {{{
+"abbrev pv !php artisan
+" }}}
+
+
+" Laravel and PHP stuff --------------------------------------------------- {{{
+" Auto-remove trailing spaces in PHP files
+autocmd BufWritePre *.php :%s/\s\+$//e
+
+" Laravel framework commons
+"nmap <leader>lr :e app/routes.php<cr>
+"nmap <leader>lca :e app/config/app.php<cr>81Gf(%O
+"nmap <leader>lcd :e app/config/database.php<cr>
+"nmap <leader>lc :e composer.json<cr>
+
+" I don't want to pull up these folders/files when calling CtrlP
+set wildignore+=*/vendor/**
+set wildignore+=*/node_modules/**
+
+"Auto change directory to match current file ,cd
+nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
+" Prepare a new PHP class
+function! Class()
+    let name = input('Class name? ')
+    let namespace = input('Any Namespace? ')
+
+    if strlen(namespace)
+        exec "normal i<?php namespace " . namespace . ";\<C-M>\<C-M>"
+    else
+        exec "normal i<?php \<C-m>"
+    endif
+
+    " Open class
+    exec "normal iclass " . name . " {\<C-m>}\<C-[>O\<C-[>"
+
+    exec "normal i\<C-M>    public function __construct()\<C-M>{\<C-M>\<C-M>}\<C-[>"
+endfunction
+nmap ,1  :call Class()<cr>
+
+
+" }}}
+
+

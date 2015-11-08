@@ -40,7 +40,7 @@ set nowrap                      " don't wrap lines
 
 set tabstop=4                   " a tab is four spaces"set softtabstop=4
 set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
-set expandtab                   " expand tabs by default (overloadable per file type later)
+set noexpandtab                 " expand tabs by default (overloadable per file type later) use expandtab or noexpandtab (ie tabs to spaces true/false)
 set shiftwidth=4                " number of spaces to use for autoindenting
 set shiftround                  " use multiple of shiftwidth when indenting with '<' and '>'
 

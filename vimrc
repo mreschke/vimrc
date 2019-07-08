@@ -34,6 +34,9 @@ syntax on
 let mapleader=","
 let maplocalleader="\\"
 
+scriptencoding utf-8
+set encoding=utf-8
+
 " Editing behaviour {{{
 set showmode					" always show what mode we're currently editing in
 set nowrap						" don't wrap lines
@@ -80,6 +83,9 @@ set shortmess+=I                " hide the launch screen
 set clipboard=unnamed           " normal OS clipboard interaction
 set autoread                    " automatically reload files changed outside of Vim
 "set autowrite                  " automatically save file on buffer switch
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>

@@ -20,6 +20,14 @@
 "   ,. (thats leader and period) shows command palette in and selects buffers
 
 
+" ##############################################################################
+" OS Specific Imports
+" ##############################################################################
+" If these are not found (you are not in debian), its ok, vim skips the import
+" In debian this file is in /usr/share/vim/vimX/debian.vim
+runtime! debian.vim
+
+
 
 
 " ##############################################################################

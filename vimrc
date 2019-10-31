@@ -1,4 +1,4 @@
-" All new custom and OS agnostic vim configuration using vim-plug plugin manager
+" All new custom and OS agnostic vim configuration with vim-plug
 " mReschke 2019-10-30
 
 
@@ -8,6 +8,16 @@
 " vim-plug
 "   Install plugin, add to vimrc and run :PlugInstall
 "   Uninstall, remove from vimrc and run :PlugClean
+" windows
+"   ctrl+wv split vertical
+"   ctrl+ws split horizontal
+"   ctrl+hjkl focus windows in hjkl direction
+"   ctrl+HJLK move window in hjkl direction
+"   ctrl+r and R move windows by rotate down or right, best to SWAP
+" ctrlp
+"   ctrl+p shows command palette
+"       while in palette, use ctrl+f to toggle files, buffers...
+"   ,. (thats leader and period) shows command palette in and selects buffers
 
 
 
@@ -70,6 +80,8 @@ nnoremap <leader>m :setlocal number!<cr>
 nnoremap <leader>n :NERDTreeToggle<CR>
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeHighlightCursorline=1
 
 " CTRLP (Command Palette, already works with CTRL+P)
 nnoremap <leader>. :CtrlPBuffer<CR>
@@ -77,6 +89,12 @@ nnoremap <leader>. :CtrlPBuffer<CR>
 " New Q and q keys to quit quicker
 nnoremap <leader>Q :q<CR>
 nnoremap <leader>q :bd<CR>
+
+" Better Window Navigation than <C-w>hjkl
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " Edit vimrc
 nnoremap <silent> <leader>ev :e ~/.vim/vimrc<CR>

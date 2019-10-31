@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cd /nwq/linstore/data/manup/nwq/vimrc/source/vimrc-current/etc/vim/ \
-    && git pull \
-    && cd ../../../../ \
-    && ./package
-

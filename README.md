@@ -1,2 +1,3 @@
-# vimrc
-My vimrc stuff
+# mReschke Custom VIM
+
+Hand build custom OS agnostic VIM with vim-plug

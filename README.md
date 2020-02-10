@@ -7,7 +7,13 @@ All new custom and OS agnostic vim configuration with vim-plug
 
 If you are part of the mreschke family, then simply use `manup install vimrc`...you'll know what that means.
 
-Everyone else, just clone this repo into your ~/.vim folder, open vim and run `:PlugInstall`, done!
+Everyone else:
+* `cd /etc`
+* `sudo mv vim vim-original`
+* `sudo git clone git@github.com:mreschke/vimrc vim`
+* `ln -s /etc/vim ~/.vim`
+* `sudo ln -s /etc/vim /usr/share/vim/vimfiles` tested on debian
+* Open vim and run `:PlugInstall`
 
 
 ## Manup Sources
